@@ -1,10 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-
 }
 
 android {
@@ -44,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.9"
     }
     packaging {
         resources {
@@ -94,6 +92,39 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     ksp("com.google.dagger:hilt-android-compiler:2.50")
     ksp("com.google.dagger:dagger-compiler:2.50")
+
+    //paging
+
+    val paging_version = "3.2.1"
+
+    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+    implementation("androidx.paging:paging-compose-android:3.3.0-alpha03")
+    // alternatively - without Android dependencies for tests
+    testImplementation("androidx.paging:paging-common-ktx:$paging_version")
+
+    //retrofit
+
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+
+    testImplementation("junit:junit:4.13.2")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+
+    //coil dependency
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    //room database
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.room:room-paging:2.6.1")
+
+    //ksp
+    ksp("androidx.room:room-compiler:2.6.1")
 
 
 }

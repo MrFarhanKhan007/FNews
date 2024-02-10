@@ -26,7 +26,7 @@ FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit
 
 ## Getting Started 🚀
 
-To get started with Newsify, follow these steps:
+To get started with FNews, follow these steps:
 
 1. Clone this repository.
 2. Open the project in Android Studio.
@@ -54,4 +54,4 @@ Special thanks to the creators and maintainers of the libraries and tools used i
 
 ---
 
-Happy reading! 📖 If you have any questions or feedback, don't hesitate to reach out. Enjoy using Newsify! 🌟
+Happy reading! 📖 If you have any questions or feedback, don't hesitate to reach out. Enjoy using FNews! 🌟

@@ -21,7 +21,7 @@ class HomeScreenViewModel
         getNewsArticles()
     }
 
-    private fun getNewsArticles() {
+    fun getNewsArticles() {
         getNewsArticleUseCase().onEach {
             when (it) {
                 is Resource.Loading -> {

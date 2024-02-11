@@ -17,7 +17,8 @@ FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit
 - **API Integration**: Utilizes Retrofit for seamless integration with the News API.
 - **Dependency Injection**: Leverages Dagger Hilt for efficient dependency injection.
 - **MVVM Architecture**: Follows the Model-View-ViewModel architecture pattern for a structured and maintainable codebase.
-- **Layered Approach**: The project is organized into three layers: Domain, Network, and Presentation, ensuring separation of concerns and scalability.
+- **Layered Approach**: The project is organized into three layers: Domain, Network, and Presentation, ensuring separation
+ of concerns and scalability.
 
 ## Technologies Used 🛠️
 
@@ -59,3 +60,7 @@ Special thanks to the creators and maintainers of the libraries and tools used i
 ---
 
 Happy reading! 📖 If you have any questions or feedback, don't hesitate to reach out. Enjoy using FNews! 🌟
+
+## Sample Video:
+https://github.com/MrFarhanKhan007/FNews/assets/96666465/38fefc20-e8dd-4f9b-b0d8-7d169ab02306
+

@@ -4,11 +4,11 @@ Welcome to FNews, your go-to source for the latest news articles! 🚀
 
 ## Overview ℹ️
 
-FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit for building native Android apps. It aims to provide users with a seamless experience in discovering and reading the latest news from around the world.
+FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit for building native Android apps. It aims to provide users with a seamless experience in discovering and reading the latest news worldwide.
 
 ## Features ✨
 
-- **Latest News**: Stay updated with the most recent news articles fetched from the internet.
+- **Latest News**: Stay updated with the most recent news articles from the internet.
 - **Dynamic UI**: Enjoy a visually appealing and responsive user interface designed with Jetpack Compose.
 - **Image Loading**: Effortlessly view news article images loaded from the internet using Coil.
 - **API Integration**: Utilizes Retrofit for seamless integration with the News API.
@@ -23,6 +23,7 @@ FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit
 - Retrofit for API calls
 - Dagger Hilt for dependency injection
 - MVVM architecture
+- Paging3 for Pagination
 
 ## Getting Started 🚀
 
@@ -34,7 +35,7 @@ To get started with FNews, follow these steps:
 
 ## API Key 🔑
 
-In order to fetch news articles from the internet, you will need to obtain an API key from the [News API](https://newsapi.org/). Once you have your API key, add it to the `local.properties` file in the following format:
+To fetch news articles from the internet, you will need to obtain an API key from the [News API](https://newsapi.org/). Once you have your API key, add it to the `local.properties` file in the following format:
 
 ```properties
 newsApiKey="YOUR_API_KEY"
@@ -46,7 +47,7 @@ Contributions are welcome! If you have any ideas, suggestions, or bug fixes, fee
 
 ## License 📝
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. Please take a look at the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements 🙏
 

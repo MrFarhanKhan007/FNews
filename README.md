@@ -6,6 +6,9 @@ Welcome to FNews, your go-to source for the latest news articles! 🚀
 
 FNews is a modern news app built using Jetpack Compose, a declarative UI toolkit for building native Android apps. It aims to provide users with a seamless experience in discovering and reading the latest news worldwide.
 
+## Screenshots 📸
+<img src="https://shorturl.at/mIKLY" alt="Screenshot" width="800">
+
 ## Features ✨
 
 - **Latest News**: Stay updated with the most recent news articles from the internet.

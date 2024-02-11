@@ -1,6 +1,8 @@
 package com.example.newsapp.presentation.screens
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -18,11 +20,14 @@ import javax.inject.Inject
 class HomeScreenViewModel
 @Inject constructor(
     private val getNewsArticleUseCase: GetNewsArticleUseCase,
-    private val newsPagingSource: NewsPagingSource // Inject PagingSource from your repository
+    private val newsPagingSource: NewsPagingSource, // Inject PagingSource from your repository
 ) :
     ViewModel() {
 
     val articles = mutableStateOf(HomeStateHolder())
+
+    var isButtonClicked by mutableStateOf(false)
+
 
     init {
         getNewsArticles()
@@ -51,5 +56,9 @@ class HomeScreenViewModel
     ) {
         newsPagingSource
     }.flow.cachedIn(viewModelScope)
+
+    fun updateArticlesState(newState: HomeStateHolder) {
+        articles.value = newState
+    }
 
 }

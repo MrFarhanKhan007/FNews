@@ -76,6 +76,13 @@ fun MyApp(modifier: Modifier) {
     }
 
 
+    val dynamicColor3 = if (isSystemInDarkTheme()) {
+        contentColor
+    } else {
+        textColor
+    }
+
+
 
     Scaffold(
         topBar = {
@@ -124,7 +131,7 @@ fun MyApp(modifier: Modifier) {
                             fontFamily = raleway,
                             textAlign = TextAlign.Center
                         ),
-                        color = textColor
+                        color = dynamicColor2
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
@@ -132,13 +139,14 @@ fun MyApp(modifier: Modifier) {
                             homeScreenViewModel.getNewsArticles()
                         },
                         shape = RoundedCornerShape(corner = CornerSize(7.dp)),
-                        colors = ButtonDefaults.buttonColors(textColor)
+                        colors = ButtonDefaults.buttonColors(dynamicColor3)
                     ) {
                         Text(
                             text = "Reload",
                             style = TextStyle(
                                 fontSize = 15.sp,
                                 fontFamily = raleway,
+                                color = dynamicColor
                             )
                         )
                     }
@@ -147,11 +155,6 @@ fun MyApp(modifier: Modifier) {
         }
 
         res.data?.let {
-//            LazyColumn(modifier.padding(contentPadding)) {
-//                items(it) {
-//                    NewsArticleItem(Modifier, it)
-//                }
-//            }
             LazyColumn(modifier.padding(contentPadding)) {
                 items(newsList.itemCount) {
                     val item = newsList[it]

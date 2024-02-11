@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -40,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import com.example.newsapp.R
 import com.example.newsapp.domain.model.NewsArticle
@@ -56,6 +56,9 @@ fun HomeScreen() {
 @Composable
 fun MyApp(modifier: Modifier) {
     val homeScreenViewModel = hiltViewModel<HomeScreenViewModel>()
+
+    val newsList = homeScreenViewModel.newsPager.collectAsLazyPagingItems()
+
     val res = homeScreenViewModel.articles.value
 
     Scaffold(
@@ -80,6 +83,8 @@ fun MyApp(modifier: Modifier) {
         containerColor = backgroundColor,
         contentColor = backgroundColor
     ) { contentPadding ->
+
+        contentPadding.calculateTopPadding()
 
         if (res.isLoading) {
             Box(modifier = modifier.fillMaxSize()) {
@@ -126,10 +131,24 @@ fun MyApp(modifier: Modifier) {
         }
 
         res.data?.let {
+//            LazyColumn(modifier.padding(contentPadding)) {
+//                items(it) {
+//                    NewsArticleItem(Modifier, it)
+//                }
+//            }
             LazyColumn(modifier.padding(contentPadding)) {
-                items(it) {
-                    NewsArticleItem(Modifier, it)
+                items(newsList.itemCount) {
+                    val item = newsList[it]
+                    if (item != null) {
+                        NewsArticleItem(modifier = Modifier, it = item)
+                    }
                 }
+                item(newsList.itemCount) {
+                    if (newsList.loadState.append.endOfPaginationReached) {
+                        CircularProgressIndicator()
+                    }
+                }
+
             }
         }
     }

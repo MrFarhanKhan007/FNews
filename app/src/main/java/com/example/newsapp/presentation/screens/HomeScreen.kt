@@ -3,6 +3,7 @@ package com.example.newsapp.presentation.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import com.example.newsapp.R
@@ -61,12 +63,26 @@ fun MyApp(modifier: Modifier) {
 
     val res = homeScreenViewModel.articles.value
 
+    val dynamicColor = if (isSystemInDarkTheme()) {
+        textColor
+    } else {
+        backgroundColor
+    }
+
+    val dynamicColor2 = if (isSystemInDarkTheme()) {
+        backgroundColor
+    } else {
+        textColor
+    }
+
+
+
     Scaffold(
         topBar = {
             Box(
                 modifier
                     .fillMaxWidth()
-                    .background(backgroundColor)
+                    .background(dynamicColor)
             ) {
                 Text(
                     text = "FNews",
@@ -75,13 +91,13 @@ fun MyApp(modifier: Modifier) {
                         fontSize = 50.sp,
                         fontFamily = raleway
                     ),
-                    color = textColor
+                    color = dynamicColor2
                 )
 
             }
         },
-        containerColor = backgroundColor,
-        contentColor = backgroundColor
+        containerColor = dynamicColor,
+        contentColor = dynamicColor
     ) { contentPadding ->
 
         contentPadding.calculateTopPadding()
@@ -143,11 +159,41 @@ fun MyApp(modifier: Modifier) {
                         NewsArticleItem(modifier = Modifier, it = item)
                     }
                 }
-                item(newsList.itemCount) {
-                    if (newsList.loadState.append.endOfPaginationReached) {
-                        CircularProgressIndicator()
+
+                when (newsList.loadState.append) {
+                    LoadState.Loading -> {
+                        item(newsList.itemCount) {
+                            if (newsList.loadState.append.endOfPaginationReached) {
+                                CircularProgressIndicator(color = textColor, trackColor = textColor)
+                            }
+                        }
+                    }
+
+                    is LoadState.Error -> {
+                        item(newsList.itemCount) {
+                            Text(
+                                text = "An error occurred while loading",
+                                style = TextStyle(
+                                    color = textColor,
+                                    fontSize = 12.sp,
+                                    fontFamily = raleway
+                                )
+                            )
+                        }
+                    }
+
+                    else -> {
+                        items(newsList.itemCount) {
+                            val item = newsList[it]
+                            if (item != null) {
+                                NewsArticleItem(modifier = Modifier, it = item)
+                            }
+                        }
+
+
                     }
                 }
+
 
             }
         }
@@ -197,6 +243,8 @@ fun NewsArticleItem(modifier: Modifier, it: NewsArticle) {
             LazyColumn {
                 items(1) { lazyScope ->
 
+                    lazyScope.dp
+
                     it.author?.let { author ->
                         Text(
                             text = author,
@@ -241,9 +289,7 @@ fun NewsArticleItem(modifier: Modifier, it: NewsArticle) {
                         )
                     }
 
-
                 }
-
 
             }
 

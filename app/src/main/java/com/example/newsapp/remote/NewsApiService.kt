@@ -12,7 +12,7 @@ interface NewsApiService {
         apiKey: String = "ca58aeea158b4ad5bef296396e422b1a",
 
         @Query("country")
-        country: String="in",
+        country: String="us",
 
         @Query("category")
         category: String="general",
